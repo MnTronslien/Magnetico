@@ -46,7 +46,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""GrowMagnetic"",
+                    ""name"": ""ReverseAuraDir"",
                     ""type"": ""Value"",
                     ""id"": ""ba5e8af6-3b7a-4f42-ad66-ad8a96e1ede6"",
                     ""expectedControlType"": ""Button"",
@@ -55,55 +55,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ShrinkMagnetic"",
-                    ""type"": ""Value"",
-                    ""id"": ""83a57bd1-3d76-4c44-9a65-56935ef4a907"",
+                    ""name"": ""Explode"",
+                    ""type"": ""Button"",
+                    ""id"": ""35f5cabe-7327-4b5f-9132-a7ec83564c0e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""SupressMagnetic"",
-                    ""type"": ""Value"",
-                    ""id"": ""75f8ca65-d721-42fe-83d4-85f5f306fdea"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""fae44999-8acf-4116-996d-bba57bfc1e5c"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GrowMagnetic"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cf01902e-800c-49ff-8625-d8b5bc4fc02f"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ShrinkMagnetic"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bae1bef6-6745-4311-a0bb-fb126494ce31"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SupressMagnetic"",
+                    ""groups"": ""Controller 1;Controller 2"",
+                    ""action"": ""ReverseAuraDir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -216,6 +185,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e36b6b8-58f2-4428-baa8-36120ae2e13f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller 1;Controller 2"",
+                    ""action"": ""Explode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,9 +240,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_GrowMagnetic = m_Player.FindAction("GrowMagnetic", throwIfNotFound: true);
-        m_Player_ShrinkMagnetic = m_Player.FindAction("ShrinkMagnetic", throwIfNotFound: true);
-        m_Player_SupressMagnetic = m_Player.FindAction("SupressMagnetic", throwIfNotFound: true);
+        m_Player_ReverseAuraDir = m_Player.FindAction("ReverseAuraDir", throwIfNotFound: true);
+        m_Player_Explode = m_Player.FindAction("Explode", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -324,18 +303,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_GrowMagnetic;
-    private readonly InputAction m_Player_ShrinkMagnetic;
-    private readonly InputAction m_Player_SupressMagnetic;
+    private readonly InputAction m_Player_ReverseAuraDir;
+    private readonly InputAction m_Player_Explode;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @GrowMagnetic => m_Wrapper.m_Player_GrowMagnetic;
-        public InputAction @ShrinkMagnetic => m_Wrapper.m_Player_ShrinkMagnetic;
-        public InputAction @SupressMagnetic => m_Wrapper.m_Player_SupressMagnetic;
+        public InputAction @ReverseAuraDir => m_Wrapper.m_Player_ReverseAuraDir;
+        public InputAction @Explode => m_Wrapper.m_Player_Explode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -351,15 +328,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @GrowMagnetic.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrowMagnetic;
-                @GrowMagnetic.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrowMagnetic;
-                @GrowMagnetic.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrowMagnetic;
-                @ShrinkMagnetic.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShrinkMagnetic;
-                @ShrinkMagnetic.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShrinkMagnetic;
-                @ShrinkMagnetic.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShrinkMagnetic;
-                @SupressMagnetic.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSupressMagnetic;
-                @SupressMagnetic.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSupressMagnetic;
-                @SupressMagnetic.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSupressMagnetic;
+                @ReverseAuraDir.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReverseAuraDir;
+                @ReverseAuraDir.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReverseAuraDir;
+                @ReverseAuraDir.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReverseAuraDir;
+                @Explode.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExplode;
+                @Explode.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExplode;
+                @Explode.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExplode;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -370,15 +344,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @GrowMagnetic.started += instance.OnGrowMagnetic;
-                @GrowMagnetic.performed += instance.OnGrowMagnetic;
-                @GrowMagnetic.canceled += instance.OnGrowMagnetic;
-                @ShrinkMagnetic.started += instance.OnShrinkMagnetic;
-                @ShrinkMagnetic.performed += instance.OnShrinkMagnetic;
-                @ShrinkMagnetic.canceled += instance.OnShrinkMagnetic;
-                @SupressMagnetic.started += instance.OnSupressMagnetic;
-                @SupressMagnetic.performed += instance.OnSupressMagnetic;
-                @SupressMagnetic.canceled += instance.OnSupressMagnetic;
+                @ReverseAuraDir.started += instance.OnReverseAuraDir;
+                @ReverseAuraDir.performed += instance.OnReverseAuraDir;
+                @ReverseAuraDir.canceled += instance.OnReverseAuraDir;
+                @Explode.started += instance.OnExplode;
+                @Explode.performed += instance.OnExplode;
+                @Explode.canceled += instance.OnExplode;
             }
         }
     }
@@ -414,8 +385,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnGrowMagnetic(InputAction.CallbackContext context);
-        void OnShrinkMagnetic(InputAction.CallbackContext context);
-        void OnSupressMagnetic(InputAction.CallbackContext context);
+        void OnReverseAuraDir(InputAction.CallbackContext context);
+        void OnExplode(InputAction.CallbackContext context);
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1292789826880548051}
   - component: {fileID: 1292789826880548052}
   - component: {fileID: 4047354917976344232}
+  - component: {fileID: -2004695141214044334}
   - component: {fileID: 1292789826880548050}
   - component: {fileID: 1292789826880548049}
   - component: {fileID: 1292789826880548054}
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292789826880548063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1898514, y: -10.983073, z: 28.08}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -55,6 +56,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 119
+  speed: 15
+  jumpingPower: 34
+  downforce: -1
   player: 0
 --- !u!114 &4047354917976344232
 MonoBehaviour:
@@ -114,22 +118,61 @@ MonoBehaviour:
     m_ActionId: 5121b2de-90b4-42af-907f-8a11735cc20c
     m_ActionName: Player/Jump
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2004695141214044334}
+        m_TargetAssemblyTypeName: Aura, Assembly-CSharp
+        m_MethodName: OnReverse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ba5e8af6-3b7a-4f42-ad66-ad8a96e1ede6
     m_ActionName: Player/GrowMagnetic
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 83a57bd1-3d76-4c44-9a65-56935ef4a907
-    m_ActionName: Player/ShrinkMagnetic
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 75f8ca65-d721-42fe-83d4-85f5f306fdea
-    m_ActionName: Player/SupressMagnetic
+      m_Calls:
+      - m_Target: {fileID: -2004695141214044334}
+        m_TargetAssemblyTypeName: Aura, Assembly-CSharp
+        m_MethodName: OnExplode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 35f5cabe-7327-4b5f-9132-a7ec83564c0e
+    m_ActionName: Player/Explode[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: ea11c64d-f18a-4b1e-a71a-b08d7b7f7be1
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-2004695141214044334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292789826880548063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590371c518fe32747b993b33b47b23d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capturedObjects: []
+  satelites: []
+  objectSpinSpeed: 3
+  objectShrinkSpeed: 0.5
+  releaseForce: 300
+  debug_angle: 3.34
+  defaultDist: 6
 --- !u!33 &1292789826880548050
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -212,7 +255,7 @@ CapsuleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}

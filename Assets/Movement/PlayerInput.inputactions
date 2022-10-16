@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "GrowMagnetic",
+                    "name": "ReverseAuraDir",
                     "type": "Value",
                     "id": "ba5e8af6-3b7a-4f42-ad66-ad8a96e1ede6",
                     "expectedControlType": "Button",
@@ -33,55 +33,24 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ShrinkMagnetic",
-                    "type": "Value",
-                    "id": "83a57bd1-3d76-4c44-9a65-56935ef4a907",
+                    "name": "Explode",
+                    "type": "Button",
+                    "id": "35f5cabe-7327-4b5f-9132-a7ec83564c0e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "SupressMagnetic",
-                    "type": "Value",
-                    "id": "75f8ca65-d721-42fe-83d4-85f5f306fdea",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "fae44999-8acf-4116-996d-bba57bfc1e5c",
-                    "path": "",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "GrowMagnetic",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cf01902e-800c-49ff-8625-d8b5bc4fc02f",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ShrinkMagnetic",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bae1bef6-6745-4311-a0bb-fb126494ce31",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SupressMagnetic",
+                    "groups": "Controller 1;Controller 2",
+                    "action": "ReverseAuraDir",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -192,6 +161,17 @@
                     "processors": "",
                     "groups": "Controller 1",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e36b6b8-58f2-4428-baa8-36120ae2e13f",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller 1;Controller 2",
+                    "action": "Explode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
