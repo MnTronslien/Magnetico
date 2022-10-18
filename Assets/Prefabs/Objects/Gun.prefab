@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8947596432898030552}
   - component: {fileID: 8947596432898030553}
   m_Layer: 8
-  m_Name: knives_5
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1629051648, guid: 81e4355cea995c14daed67e4ae9af432, type: 3}
+  m_Sprite: {fileID: 180036077, guid: 7e0ddd9d15f8b7f4d9ad3d982816481a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 8947596434307572047}
   - component: {fileID: 8947596434307572046}
   m_Layer: 8
-  m_Name: Knife
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,19 +311,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.06936139, y: -0.7202902}
-      - {x: 0.13529104, y: -0.14594555}
-      - {x: 0.26665682, y: -0.15032864}
-      - {x: 0.27322823, y: -0.05132103}
-      - {x: 0.14545137, y: -0.02036953}
-      - {x: 0.17115068, y: 0.82360077}
-      - {x: 0.11787486, y: 0.79183865}
-      - {x: -0.12978661, y: -0.0042516887}
-      - {x: -0.27173156, y: 0.0055379868}
-      - {x: -0.26217532, y: -0.1459217}
-      - {x: -0.13121867, y: -0.16948605}
-      - {x: -0.14992487, y: -0.677431}
-      - {x: -0.063815534, y: -0.85113716}
+    - - {x: 0.9645379, y: 0.5823374}
+      - {x: -0.5810267, y: 0.5204024}
+      - {x: -0.8488858, y: 0.52521944}
+      - {x: -1.0827098, y: 0.68964607}
+      - {x: -1.1282067, y: 0.6135843}
+      - {x: -1.0042479, y: 0.33020964}
+      - {x: -0.8362222, y: 0.093838885}
+      - {x: -1.1490357, y: -0.6087582}
+      - {x: -0.88952065, y: -0.7029095}
+      - {x: -0.5728351, y: -0.2883908}
+      - {x: -0.3265054, y: -0.25888363}
+      - {x: -0.15277657, y: 0.014744282}
+      - {x: 0.9508698, y: 0.11617061}
+      - {x: 1.1220978, y: 0.22746891}
+      - {x: 1.1178173, y: 0.36873212}
 --- !u!50 &8947596434307572046
 Rigidbody2D:
   serializedVersion: 4
@@ -336,7 +338,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 1.3775176
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

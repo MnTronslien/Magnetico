@@ -16,9 +16,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
 
     private Vector2 movementDir = Vector2.zero;
-    private bool jumped = false ;
 
-
+    public AudioClip deathSound;
 
     public bool isPlayerOne = false;
     public bool isPlayerTwo = false;
@@ -84,6 +83,7 @@ public class PlayerController : MonoBehaviour
             MyScoreManager.instance.AddScoreForPlayerTwoDeath();
             MyScoreManager.playerTwoAlive = false;
         }
+        AudioManager.Play(deathSound);
         Destroy(gameObject);
     }
 
